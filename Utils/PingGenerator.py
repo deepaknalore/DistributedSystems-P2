@@ -4,7 +4,8 @@ from datetime import datetime
 
 pingCount = 10
 count = 0
-ipList = ['www.google.com']
+#ipList = ['www.google.com']
+ipList = ["c220g1-030811.wisc.cloudlab.us", "ms0619.utah.cloudlab.us", "clnode216.clemson.cloudlab.us"]
 
 def WritePingStats():
     t = datetime.utcnow()
@@ -23,10 +24,10 @@ def WritePingStats():
 
 
 while(True):
-    if count == 2:
+    if count == 8000:
         break
     WritePingStats()
     count += 1
-    time.sleep(10)
+    time.sleep(30)
 
 
