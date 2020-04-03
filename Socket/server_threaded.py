@@ -16,6 +16,7 @@ def threaded(c):
 
 		# data received from client 
 		data = c.recv(1024) 
+		time_now = time.time()
 		print(data)
 		if not data: 
 			print('Bye') 
@@ -25,8 +26,7 @@ def threaded(c):
 			break
 
 		# reverse the given string from client 
-		#data = data[::-1] 
-		time_now = time.time()
+		#data = data[::-1]
 		send_data = "I am the server, server time: " + str(time_now)
 
 		# send back reversed string to client 
