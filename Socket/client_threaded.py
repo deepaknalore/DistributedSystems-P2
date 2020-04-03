@@ -41,7 +41,7 @@ def Main(args):
 		time_after_receive = float(data.decode('ascii').split(':')[1].strip(' '))
 		latency = ((time_after_receive - time_before_send)*1000) / 2.0
 
-		with open(str(host) + ".csv", "a") as fd:
+		with open(str(args.server_host) + ".csv", "wa") as fd:
 			fd.write(str(time_to_log) + "," + str(latency) + "\n")
 
 	s.close() 
