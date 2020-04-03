@@ -37,8 +37,9 @@ def Main(args):
 
 		# messaga received from server 
 		data = s.recv(1024)
+		time_after_receive = time.time()
 		print(data)
-		time_after_receive = float(data.decode('ascii').split(':')[1].strip(' '))
+		#time_after_receive = float(data.decode('ascii').split(':')[1].strip(' '))
 		latency = ((time_after_receive - time_before_send)*1000) / 2.0
 
 		with open(str(args.server_host) + ".csv", "a") as fd:
