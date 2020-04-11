@@ -41,7 +41,7 @@ def handleRequest(client_id, client_cluster, info):
 
 @app.route('/filewrite', methods = ['GET'])
 def fileWriter():
-    with open(my_server_id + "." + "log", 'a') as f:
+    with open(my_server_id + "." + "log", 'w') as f:
         for entry in log:
             f.write(entry + "\n")
     return jsonify({"Request": True}), 200
