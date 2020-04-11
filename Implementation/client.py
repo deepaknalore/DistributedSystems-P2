@@ -11,7 +11,7 @@ p = Pool(10)
 CLUSTER = "wisconsin"
 
 CLIENT_ID = "client_1"
-SERVER_LIST = ["http://127.0.0.1:5000/", "http://127.0.0.1:5000/"]
+SERVER_LIST = ["http://clnode216.clemson.cloudlab.us:5000/"]
 payload = {'client_id': CLIENT_ID, 'cluster': CLUSTER}
 
 headers = {
@@ -25,16 +25,16 @@ def fetch(server):
 
 
 #initialize
-# for server in SERVER_LIST:
-#     payload['info'] = random.randrange(1, 1000)
-#     fetch(server)
-
-for i in range(100):
-    payload['info'] = random.randrange(1, 1000)
-    for server in SERVER_LIST:
-        p.spawn(fetch,server)
-    p.join()
-
 for server in SERVER_LIST:
-    requests.request("GET", server + 'filewrite')
+    payload['info'] = random.randrange(1, 1000)
+    fetch(server)
+
+# for i in range(100):
+#     payload['info'] = random.randrange(1, 1000)
+#     for server in SERVER_LIST:
+#         p.spawn(fetch,server)
+#     p.join()
+#
+# for server in SERVER_LIST:
+#     requests.request("GET", server + 'filewrite')
 

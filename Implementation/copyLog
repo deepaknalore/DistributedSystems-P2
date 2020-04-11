@@ -1,0 +1,3 @@
+scp deepaksr@clnode216.clemson.cloudlab.us:/users/nithinv/DistributedSystems-P2/Implementation/clemson.log ./
+scp deepaksr@ms0619.utah.cloudlab.us:/users/nithinv/DistributedSystems-P2/Implementation/utah.log ./
+scp deepaksr@c220g1-030811.wisc.cloudlab.us:/users/nithinv/DistributedSystems-P2/Implementation/wisconsin.log ./
