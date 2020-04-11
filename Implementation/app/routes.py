@@ -3,10 +3,7 @@ from datetime import datetime
 from flask import request, render_template, jsonify, make_response, abort
 from collections import defaultdict
 from _thread import *
-import threading 
-import argparse
-import time 
-import json
+import time
 
 
 my_server_id = "wisconsin"
@@ -14,10 +11,6 @@ my_cluster = "wisconsin"
 servers = ['wisconsin', 'clemson', 'utah']
 log = []
 
-# @app.route('/')
-# @app.route('/index')
-# def index():
-#     return "Hello, World!"
 latency_dict = defaultdict(dict)
 latency_dict['wisconsin']['wisconsin'] = 0.08
 latency_dict['wisconsin']['clemson'] = 12.5
@@ -31,10 +24,6 @@ latency_dict['utah']['clemson'] = 25
 
 
 def handleRequest(client_id, client_cluster, info):
-    # print("In handleRequest")
-    # print(client_id)
-    # print(client_cluster)
-    # print(my_cluster)
     my_latency = latency_dict[client_cluster][my_cluster]
     all_latencies = []
     for server in servers:
@@ -54,7 +43,8 @@ def handleRequest(client_id, client_cluster, info):
 def fileWriter():
     with open(my_server_id + "." + "log", 'a') as f:
         for entry in log:
-            f.write(entry)
+            f.write(entry + "\n")
+    return jsonify({"Request": True}), 200
 
 
 @app.route('/request', methods = ['POST'])

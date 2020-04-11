@@ -29,8 +29,6 @@ def fetch(server):
 #     payload['info'] = random.randrange(1, 1000)
 #     fetch(server)
 
-requests.request("GET", server + 'filewrite')
-
 for i in range(100):
     payload['info'] = random.randrange(1, 1000)
     for server in SERVER_LIST:
