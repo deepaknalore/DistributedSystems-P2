@@ -1,0 +1,14 @@
+Make use of pipfile to install the required libraries
+
+pipenv install -> to install the required pipenv directory
+
+To add a new package, then use the following command:
+pipenv install <package>
+
+To activate the env:
+pipenv shell
+
+Always exit the shell using: 'exit' command
+
+To start the flask server: flask run
+
