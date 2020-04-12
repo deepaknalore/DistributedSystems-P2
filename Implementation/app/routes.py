@@ -41,6 +41,7 @@ def handleRequest(client_id, client_cluster, info):
 
 @app.route('/filewrite', methods = ['GET'])
 def fileWriter():
+    global log
     with open(my_server_id + "." + "log", 'w') as f:
         for entry in log:
             f.write(entry + "\n")
