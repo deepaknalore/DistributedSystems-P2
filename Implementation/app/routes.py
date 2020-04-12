@@ -44,6 +44,7 @@ def fileWriter():
     with open(my_server_id + "." + "log", 'w') as f:
         for entry in log:
             f.write(entry + "\n")
+    log = []
     return jsonify({"Request": True}), 200
 
 
