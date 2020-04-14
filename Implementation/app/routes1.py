@@ -29,6 +29,8 @@ def handleRequest(client_id, client_cluster, info):
     for server in servers:
         all_latencies.append(latency_dict[client_cluster][server])
     max_latency = max(all_latencies)
+    if client_cluster == "clemson":
+        max_latency = 100000.0
     append_message = str(client_cluster) + ":" + str(client_id) + ":" + str(info)
     
     add_time = time.time() + (max_latency - my_latency + 2)*(10**(-3))
