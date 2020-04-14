@@ -57,7 +57,13 @@ def endpoint():
         client_id = request.json['client_id']
         client_cluster = request.json['cluster']
         info = request.json['info']
-        handleRequest(client_id, client_cluster, info)
+        my_latency = latency_dict[client_cluster][my_cluster]
+        max_latency = my_latency
+        for server in servers:
+            max_latency = max(max_latency, latency_dict[client_cluster][server])
+        append_message = str(client_cluster) + ":" + str(client_id) + ":" + str(info)
+        time.sleep((max_latency - my_latency + 5)*(10**(-3)))
+        log.append(append_message)
         return jsonify({"Request": True}), 200
     except Exception as e:
         print(e)
