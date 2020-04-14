@@ -24,7 +24,6 @@ latency_dict['utah']['clemson'] = 25.0
 
 
 def handleRequest(client_id, client_cluster, info):
-    print("In handleRequest in route1")
     my_latency = latency_dict[client_cluster][my_cluster]
     all_latencies = []
     for server in servers:
