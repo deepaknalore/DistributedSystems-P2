@@ -23,7 +23,8 @@ latency_dict['utah']['wisconsin'] = 18.0
 latency_dict['utah']['clemson'] = 25.0
 
 
-def handleRequest(client_id, client_cluster, info, client_time):
+def handleRequest(client_id, client_cluster, info):
+    print("In handleRequest in route1")
     my_latency = latency_dict[client_cluster][my_cluster]
     all_latencies = []
     for server in servers:
@@ -55,8 +56,7 @@ def endpoint():
         client_id = request.json['client_id']
         client_cluster = request.json['cluster']
         info = request.json['info']
-        client_time = request.json['time']
-        handleRequest(client_id, client_cluster, info, client_time)
+        handleRequest(client_id, client_cluster, info)
         return jsonify({"Request": True}), 200
     except Exception as e:
         print(e)
