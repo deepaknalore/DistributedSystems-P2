@@ -5,6 +5,9 @@ from collections import defaultdict
 from _thread import *
 import time
 
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 my_server_id = "wisconsin"
 my_cluster = "wisconsin"
@@ -12,15 +15,25 @@ servers = ['wisconsin', 'clemson', 'utah']
 log = []
 
 latency_dict = defaultdict(dict)
-latency_dict['wisconsin']['wisconsin'] = 0.08
-latency_dict['wisconsin']['clemson'] = 12.5
-latency_dict['wisconsin']['utah'] = 17.5
-latency_dict['clemson']['clemson'] = 0.02
-latency_dict['clemson']['wisconsin'] = 13.0
-latency_dict['clemson']['utah'] = 25.0
-latency_dict['utah']['utah'] = 0.3
-latency_dict['utah']['wisconsin'] = 18.0
-latency_dict['utah']['clemson'] = 25.0
+# latency_dict['wisconsin']['wisconsin'] = 0.08
+# latency_dict['wisconsin']['clemson'] = 12.5
+# latency_dict['wisconsin']['utah'] = 17.5
+# latency_dict['clemson']['clemson'] = 0.02
+# latency_dict['clemson']['wisconsin'] = 13.0
+# latency_dict['clemson']['utah'] = 25.0
+# latency_dict['utah']['utah'] = 0.3
+# latency_dict['utah']['wisconsin'] = 18.0
+# latency_dict['utah']['clemson'] = 25.0
+
+latency_dict['wisconsin']['wisconsin'] = 82
+latency_dict['wisconsin']['clemson'] = 12512
+latency_dict['wisconsin']['utah'] = 17534
+latency_dict['clemson']['clemson'] = 22
+latency_dict['clemson']['wisconsin'] = 13056
+latency_dict['clemson']['utah'] = 25124
+latency_dict['utah']['utah'] = 326
+latency_dict['utah']['wisconsin'] = 18822
+latency_dict['utah']['clemson'] = 25024
 
 
 def handleRequest(client_id, client_cluster, info):
@@ -33,7 +46,7 @@ def handleRequest(client_id, client_cluster, info):
         max_latency = 100000.0
     append_message = str(client_cluster) + ":" + str(client_id) + ":" + str(info)
     
-    add_time = time.time() + (max_latency - my_latency + 2)*(10**(-3))
+    add_time = time.time() + (max_latency - my_latency + 2000)*(10**(-6))
     while time.time() < add_time:
         continue
     log.append(append_message)
@@ -62,7 +75,7 @@ def endpoint():
         for server in servers:
             max_latency = max(max_latency, latency_dict[client_cluster][server])
         append_message = str(client_cluster) + ":" + str(client_id) + ":" + str(info)
-        time.sleep((max_latency - my_latency + 5)*(10**(-3)))
+        time.sleep((max_latency - my_latency + 4000)*(10**(-6)))
         log.append(append_message)
         return jsonify({"Request": True}), 200
     except Exception as e:
