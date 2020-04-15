@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-DIRECTORY = 'SameClientWithSleep/'
+DIRECTORY = 'New/'
 files = [DIRECTORY + 'wisconsin.log', DIRECTORY + 'clemson.log', DIRECTORY + 'utah.log']
 
 file_wise_ops = defaultdict(list)
